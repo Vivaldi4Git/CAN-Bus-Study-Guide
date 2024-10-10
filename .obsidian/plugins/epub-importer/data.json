@@ -1,0 +1,22 @@
+{
+  "tag": "book",
+  "libraries": [
+    "E:\\学习文件\\图书",
+    ""
+  ],
+  "byDrag": true,
+  "savePath": "C:\\Users\\Administrator\\Documents\\note\\my_code_learn\\书架",
+  "assetsPath": "{{savePath}}/{{bookName}}/images",
+  "granularity": 4,
+  "mocName": "{{bookName}}",
+  "notePropertysTemplate": "",
+  "oneNote": false,
+  "oneFolder": true,
+  "mocPropertysTemplate": "title: {{bookName}}\nauthor: {{author}}\npublisher: {{publisher}}\nstatus: false",
+  "imageFormat": "![](imagePath)",
+  "reformatting": false,
+  "autoOpenRightPanel": false,
+  "removeDuplicateFolders": false,
+  "moreLog": false,
+  "leafID": ""
+}
