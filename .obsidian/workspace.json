@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CANopen/CAN.md",
+                "file": "CANopen/CANopen对象字典.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CANopen/CAN.md",
+                "file": "CANopen/CANopen对象字典.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CANopen/CAN.md",
+                "file": "CANopen/CANopen对象字典.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CANopen/CAN.md"
+                "file": "CANopen/CANopen对象字典.md"
               }
             }
           },
@@ -160,7 +160,19 @@
   },
   "active": "3f8867fac6c5f962",
   "lastOpenFiles": [
+    "attachments/Pasted image 20241011163943.png",
+    "attachments/Pasted image 20241011163910.png",
+    "CANopen/CANopen轻松入门（周立功）.pdf",
+    "CANopen/CANopen对象字典.md",
+    "CANopen/CANopen_Readme.md",
+    "attachments/Pasted image 20241011161447.png",
+    "attachments/Pasted image 20241011160622.png",
     "CANopen/CAN的数据传输.md",
+    "CANopen/CANopen.md",
+    "CANopen/对象字典.md",
+    "CANopen/CAN的物理机制.md",
+    "CANopen/CAN物理机制.md",
+    "CANopen/CAN.md",
     "README.md",
     "attachments/Pasted image 20241010163712.png",
     "attachments/Pasted image 20241010163647.png",
@@ -169,14 +181,9 @@
     "attachments/Pasted image 20241010161946.png",
     "attachments/Pasted image 20241010154416.png",
     "CANopen/image.png",
-    "attachments/image.png",
     "attachments",
-    "Pasted image 20241010154355.png",
-    "Pasted image 20241010154334.png",
-    "CANopen/CAN.md",
     "CANopen/的数据传输.md",
     "CANopen/CAN传输.md",
-    "CANopen/CANopen_Readme.md",
     "程序员修炼之道（第2版）/程序员修炼之道（第2版） 1.epub",
     "书架",
     "程序员修炼之道（第2版）/DRY原则.md",
@@ -190,7 +197,6 @@
     "程序员修炼之道（第2版）/自我投资.md",
     "程序员修炼之道（第2版）",
     "未命名/素养.md",
-    "未命名/程序员修炼之道（第2版）.epub",
     "未命名/自我投资.md",
     "书.md",
     "clean_code/错误处理.md",
@@ -200,12 +206,6 @@
     "clean_code.md",
     "新拉代码的git步骤.md",
     "修改commit.md",
-    "porcelainish.md",
-    "Jenkins/Github Access Token.md",
-    "日记/2024-08-05.md",
-    "Jenkins/中文配置.md",
-    "Jenkins/入门.md",
-    "杂项/周报.md",
     "总结/运动方式和指令的关系.canvas",
     "总结/未命名.canvas"
   ]
