@@ -48,3 +48,7 @@ CAN网络中的节点会根据RTR位来识别帧的类型：数据帧或远程�
 如需了解更多关于CAN总线消息帧架构的详细信息，可以参考以下链接：
 
 [Controller Area Network (CAN Bus) - Message Frame Architecture - Copperhill Technologies](https://copperhilltech.com/blog/controller-area-network-can-bus-message-frame-architecture/)
+
+# 相关文章
+- [CAN的物理机制](CAN的物理机制.md)
+- [CANopen](CANopen.md)
