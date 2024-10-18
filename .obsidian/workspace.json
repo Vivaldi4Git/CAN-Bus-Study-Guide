@@ -13,10 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CANopen/CANopen对象字典.md",
+                "file": "CANopen/CAN的数据传输.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "CAN的数据传输"
             }
           }
         ]
@@ -39,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
             }
           },
           {
@@ -54,7 +58,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
             }
           },
           {
@@ -62,7 +68,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
             }
           }
         ]
@@ -85,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CANopen/CANopen对象字典.md",
+                "file": "CANopen/CAN的数据传输.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +101,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "CAN的数据传输 的反向链接列表"
             }
           },
           {
@@ -102,10 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CANopen/CANopen对象字典.md",
+                "file": "CANopen/CAN的数据传输.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "CAN的数据传输 的出链列表"
             }
           },
           {
@@ -116,7 +128,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
             }
           },
           {
@@ -125,8 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CANopen/CANopen对象字典.md"
-              }
+                "file": "CANopen/CAN的数据传输.md"
+              },
+              "icon": "lucide-list",
+              "title": "CAN的数据传输 的大纲"
             }
           },
           {
@@ -134,7 +150,9 @@
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
         ],
@@ -160,27 +178,39 @@
   },
   "active": "3f8867fac6c5f962",
   "lastOpenFiles": [
-    "attachments/Pasted image 20241011163943.png",
-    "attachments/Pasted image 20241011163910.png",
-    "CANopen/CANopen轻松入门（周立功）.pdf",
-    "CANopen/CANopen对象字典.md",
-    "CANopen/CANopen_Readme.md",
-    "attachments/Pasted image 20241011161447.png",
-    "attachments/Pasted image 20241011160622.png",
-    "CANopen/CAN的数据传输.md",
-    "CANopen/CANopen.md",
-    "CANopen/对象字典.md",
-    "CANopen/CAN的物理机制.md",
-    "CANopen/CAN物理机制.md",
     "CANopen/CAN.md",
+    "CANopen/CAN的数据传输.md",
+    "CANopen/CAN的物理机制.md",
+    "周报.md",
+    "CANopen/特殊协议.md",
     "README.md",
-    "attachments/Pasted image 20241010163712.png",
-    "attachments/Pasted image 20241010163647.png",
-    "attachments/Pasted image 20241010162659.png",
-    "attachments/Pasted image 20241010162238.png",
-    "attachments/Pasted image 20241010161946.png",
-    "attachments/Pasted image 20241010154416.png",
+    "attachments/Pasted image 20241016153549.png",
+    "attachments/Pasted image 20241016153513.png",
+    "CANopen/CANopenPDO.md",
+    "attachments/Pasted image 20241016150552.png",
     "CANopen/image.png",
+    "attachments/Pasted image 20241016144003.png",
+    "attachments/Pasted image 20241016143711.png",
+    "CANopen/CANopenSDO.md",
+    "attachments/Pasted image 20241016134514.png",
+    "CANopen/意优CanOpen应用手册V1.7.pdf",
+    "attachments/Pasted image 20241016110342.png",
+    "attachments/Pasted image 20241016104903.png",
+    "Excalidraw/Drawing 2024-10-15 17.07.15.excalidraw.md",
+    "Excalidraw",
+    "CANopen/CANopenSDP.md",
+    "attachments/Pasted image 20241015154110.png",
+    "CANopen/CANopen网络管理NMT.md",
+    "CANopen/CANopen_索引.md",
+    "CANopen/CANopen对象字典.md",
+    "CANopen网络管理.md",
+    "CANopen/CANopen.md",
+    "解析.md",
+    "CANopen/CAN物理机制.md",
+    "CANopen/CANopen网络管理.md",
+    "CANopen/CANopen轻松入门（周立功）.pdf",
+    "CANopen/CANopen_Readme.md",
+    "CANopen/对象字典.md",
     "attachments",
     "CANopen/的数据传输.md",
     "CANopen/CAN传输.md",
@@ -193,19 +223,6 @@
     "程序员修炼之道（第2版）/DRY原则",
     "程序员修炼之道（第2版）/原则",
     "clean_code/代码整洁之道.epub",
-    "未命名/程序员修炼之道（第2版） 1.epub",
-    "程序员修炼之道（第2版）/自我投资.md",
-    "程序员修炼之道（第2版）",
-    "未命名/素养.md",
-    "未命名/自我投资.md",
-    "书.md",
-    "clean_code/错误处理.md",
-    "clean_code/注释.md",
-    "clean_code/函数.md",
-    "aop.md",
-    "clean_code.md",
-    "新拉代码的git步骤.md",
-    "修改commit.md",
     "总结/运动方式和指令的关系.canvas",
     "总结/未命名.canvas"
   ]

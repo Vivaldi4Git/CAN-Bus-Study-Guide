@@ -5,7 +5,6 @@ CAN（Controller Area Network（控制器局域网））是一种串行通信协
 ## 什么是串行通信
 
 串行通信是一种通信方式，数据按照顺序一位一位地传输。
-
 想象一个狭窄的管道，水滴（数据位）必须一个接一个地通过。
 
 ## 为什么使用串行通信
@@ -14,6 +13,7 @@ CAN（Controller Area Network（控制器局域网））是一种串行通信协
 2、抗干扰性：少量线路更容易进行电磁屏蔽。
 3、长距离传输能力：串行信号可以在较长距离内保持完整性。在汽车或工厂等大型系统中，这一点尤为重要。
 
-
-
-[CAN 总线协议 | 人人都懂物联网 (getiot.tech)](https://getiot.tech/canbus/canbus-protocol)
+## 参考资料
+- [CAN 总线协议 | 人人都懂物联网 (getiot.tech)](https://getiot.tech/canbus/canbus-protocol)
+# 下一章
+- [CAN的数据传输](CAN的数据传输.md)
