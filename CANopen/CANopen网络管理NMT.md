@@ -7,7 +7,12 @@
 在CANopen网络中，被NMT管理的对象称为"节点"。节点是指连接到CANopen网络的任何设备或系统。
 
 ## 节点状态
-![](../attachments/Pasted%20image%2020241012112627.png)
+![](../attachments/Pasted%20image%2020241022151137.png)
+节点状态如下： 
+- 初始化：开启后，节点经过这个状态。此时，设备应用程序和设备通信（比特率和节点地址）被初始化。之后，节点独立切换到“预操作”状态。
+- 预操作：可以通过 SDO 与节点通信。但是，节点不能执行 PDO 通信。
+- 运行：CANopen 节点完全运行。它可以独立发送和接收过程数据。
+- 已停止：节点与网络完全分离。无法进行 SDO 或 PDO 通信。节点只能通过相应的网络命令（例如：启动节点）才能更改为另一种网络状态。
 
 ## NMT节点上线报文
 
@@ -39,7 +44,7 @@ CANopen 从站按其对象字典中 1017h 中填写的心跳生产时间（ms）
 
 ## NMT 节点状态切换命令
 
-顾名思义，NMT 节点状态切换命令就是用于切换 NMT 节点状态的命令。
+MT 节点状态切换命令就是用于切换 NMT 节点状态的命令。
 在CANopen网络中，NMT主站可以向从站发送节点状态切换命令，以控制从站进入不同的工作状态。
 
 ![](../attachments/Pasted%20image%2020241012151119.png)
@@ -81,6 +86,6 @@ PC扩展的CANopen主站通信卡就像网卡一样，只不过连入的是CAN�
 
 # 参考资料
 - [CANopen轻松入门（周立功）](CANopen轻松入门（周立功）.pdf)
-                      
+- [CANopen 诊断 (helpme-codesys.com)](https://content.helpme-codesys.com/zh-CHS/CODESYS%20CANbus/_can_f_canopen_manager_diagnosis2.html)
 # 下一章
 - [CANopenPDO](CANopenPDO.md)
