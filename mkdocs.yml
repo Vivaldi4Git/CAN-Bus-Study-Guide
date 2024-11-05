@@ -1,0 +1,77 @@
+# 基本配置
+site_name: CANopen 学习笔记
+site_url: https://Vivaldi4Git.github.io/CAN-Bus-Study-Guide
+repo_url: https://github.com/Vivaldi4Git/CAN-Bus-Study-Guide
+repo_name: Vivaldi4Git/CAN-Bus-Study-Guide
+
+# 将文档目录设置为当前目录
+docs_dir: ./docs
+
+# 主题设置
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# 目录结构
+nav:
+  - 主页: index.md
+  - CANopen:
+    - CAN基础: 
+      - CAN简介: CANopen/CAN.md
+      - 数据传输: CANopen/CAN的数据传输.md
+      - 物理机制: CANopen/CAN的物理机制.md
+    - CANopen核心概念:
+      - CANopen简介: CANopen/CANopen.md
+      - 对象字典: CANopen/CANopen对象字典.md
+      - 网络管理: CANopen/CANopen网络管理NMT.md
+      - SDO: CANopen/CANopenSDO.md
+      - PDO: CANopen/CANopenPDO.md
+      - 特殊协议: CANopen/特殊协议.md
+    - CANopenNode:
+      - 介绍: CANopenNode/README.md
+      - 教程: 
+        - 概述: CANopenNode/tutorial/tutorial.md
+        - SDO: CANopenNode/tutorial/SDO.md
+        - LSS: CANopenNode/tutorial/LSS.md
+      - 源码分析:
+        - CO_CANread: CANopenNode/source_code/CO_CANread.md
+        - CO_CANsend: CANopenNode/source_code/CO_CANsend.md
+        - CO_CANmodule_init: CANopenNode/source_code/CO_CANmodule_init.md
+
+# 扩展
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - tables
+  - footnotes
+
+# 插件
+plugins:
+  - search
+  - roamlinks
