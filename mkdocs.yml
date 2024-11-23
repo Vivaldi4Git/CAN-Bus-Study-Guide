@@ -39,33 +39,44 @@ theme:
 # 目录结构
 nav:
   - 主页: index.md
-  - CANopen:
-    - CAN基础: 
-      - CAN简介: CANopen/CAN.md
-      - 数据传输: CANopen/CAN的数据传输.md
-      - 物理机制: CANopen/CAN的物理机制.md
-    - CANopen核心概念:
-      - CANopen简介: CANopen/CANopen.md
-      - 对象字典: CANopen/CANopen对象字典.md
-      - 网络管理: CANopen/CANopen网络管理NMT.md
-      - SDO: CANopen/CANopenSDO.md
-      - PDO: CANopen/CANopenPDO.md
-      - 特殊协议: CANopen/特殊协议.md
-    - CANopenNode:
-      - 介绍: CANopenNode/README.md
-      - 教程: 
-        - 概述: CANopenNode/tutorial/tutorial.md
-        - SDO: CANopenNode/tutorial/SDO.md
-        - LSS: CANopenNode/tutorial/LSS.md
-      - 源码分析:
-        - CO_CANread: CANopenNode/source_code/CO_CANread.md
-        - CO_CANsend: CANopenNode/source_code/CO_CANsend.md
-        - CO_CANmodule_init: CANopenNode/source_code/CO_CANmodule_init.md
-        - CO_CANrx_t: CANopenNode/source_code/CO_CANrx_t.md
-        - CO_CANtx_t: CANopenNode/source_code/CO_CANtx_t.md
-        - NMT: CANopenNode/source_code/NMT.md
-        - SDO: CANopenNode/source_code/SDO.md
-        - OD: CANopenNode/source_code/OD.md
+  - CAN基础: 
+    - CAN简介: CAN/CAN.md
+    - 数据传输: CAN/CAN的数据传输.md
+    - 物理机制: CAN/CAN的物理机制.md
+  - CANopen核心概念:
+    - CANopen简介: CANopen/CANopen.md
+    - 对象字典: CANopen/CANopen对象字典.md
+    - 网络管理: CANopen/CANopen网络管理NMT.md
+    - SDO: CANopen/CANopenSDO.md
+    - PDO: CANopen/CANopenPDO.md
+    - 特殊协议: CANopen/特殊协议.md
+  - CANopenNode:
+    - 介绍: CANopenNode/README.md
+    - 教程: 
+      - 概述: CANopenNode/tutorial/tutorial.md
+      - SDO: CANopenNode/tutorial/SDO.md
+      - LSS: CANopenNode/tutorial/LSS.md
+    - 源码分析:
+      - 初始化: CANopenNode/source_code/初始化.md
+      - CO_CANmodule_init: CANopenNode/source_code/CO_CANmodule_init.md
+      - CO_CANread: CANopenNode/source_code/CO_CANread.md
+      - CO_CANsend: CANopenNode/source_code/CO_CANsend.md
+      - CO_CANrx_t: CANopenNode/source_code/CO_CANrx_t.md
+      - CO_CANtx_t: CANopenNode/source_code/CO_CANtx_t.md
+      - NMT: CANopenNode/source_code/NMT.md
+      - SDO: CANopenNode/source_code/SDO.md
+      - PDO: CANopenNode/source_code/PDO.md
+      - OD: CANopenNode/source_code/OD.md
+    - 实践:
+      - CanOpenNode实践: CANopenNode/CANopenNode_practice/CanOpenNode实践.md
+      - SLCAN实践: CANopenNode/CANopenNode_practice/SLCAN实践.md
+      - cocomm机制探索: CANopenNode/CANopenNode_practice/cocomm 机制探索.md
+      - CAN-ID: CANopenNode/CANopenNode_practice/can-id(cob-id).md
+      - 报错相关: CANopenNode/CANopenNode_practice/报错相关.md
+      - 硬件问题: CANopenNode/CANopenNode_practice/奇怪的硬件问题.md
+  - 资料:
+    - 推荐网站: 资料/awesome website.md
+
 # 扩展
 markdown_extensions:
   - attr_list

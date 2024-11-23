@@ -1,0 +1,1942 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Vivaldi4Git.github.io/CAN-Bus-Study-Guide/CANopenNode/source_code/SDO/">
+      
+      
+        <link rel="prev" href="../NMT/">
+      
+      
+        <link rel="next" href="../PDO/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>SDO - CANopen 学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#canopen-sdo" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="CANopen 学习笔记" class="md-header__button md-logo" aria-label="CANopen 学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CANopen 学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SDO
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Vivaldi4Git/CAN-Bus-Study-Guide" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Vivaldi4Git/CAN-Bus-Study-Guide
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CAN/CAN/" class="md-tabs__link">
+          
+  
+    
+  
+  CAN基础
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CANopen/CANopen/" class="md-tabs__link">
+          
+  
+    
+  
+  CANopen核心概念
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  CANopenNode
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%B5%84%E6%96%99/awesome%20website/" class="md-tabs__link">
+          
+  
+    
+  
+  资料
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="CANopen 学习笔记" class="md-nav__button md-logo" aria-label="CANopen 学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CANopen 学习笔记
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Vivaldi4Git/CAN-Bus-Study-Guide" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Vivaldi4Git/CAN-Bus-Study-Guide
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CAN基础
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            CAN基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CAN/CAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CAN简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CAN/CAN%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据传输
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CAN/CAN%E7%9A%84%E7%89%A9%E7%90%86%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    物理机制
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CANopen核心概念
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CANopen核心概念
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CANopen/CANopen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CANopen简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CANopen/CANopen%E5%AF%B9%E8%B1%A1%E5%AD%97%E5%85%B8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对象字典
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CANopen/CANopen%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86NMT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络管理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CANopen/CANopenSDO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CANopen/CANopenPDO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PDO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CANopen/%E7%89%B9%E6%AE%8A%E5%8D%8F%E8%AE%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特殊协议
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    CANopenNode
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            CANopenNode
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    教程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            教程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/SDO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SDO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/LSS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    源码分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            源码分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    初始化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CO_CANmodule_init/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CO_CANmodule_init
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CO_CANread/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CO_CANread
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CO_CANsend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CO_CANsend
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CO_CANrx_t/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CO_CANrx_t
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CO_CANtx_t/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CO_CANtx_t
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NMT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NMT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SDO
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SDO
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sdo" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO通信概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDO通信概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本通信流程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO通信实现细节
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDO通信实现细节">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      通信架构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO服务端初始化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO请求处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDO请求处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO状态说明
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAN层
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CAN层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据流向
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PDO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PDO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    实践
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            实践
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANopenNode_practice/CanOpenNode%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CanOpenNode实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANopenNode_practice/SLCAN%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SLCAN实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANopenNode_practice/cocomm%20%E6%9C%BA%E5%88%B6%E6%8E%A2%E7%B4%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cocomm机制探索
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANopenNode_practice/can-id%28cob-id%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CAN-ID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANopenNode_practice/%E6%8A%A5%E9%94%99%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    报错相关
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CANopenNode_practice/%E5%A5%87%E6%80%AA%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬件问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    资料
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            资料
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%B5%84%E6%96%99/awesome%20website/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    推荐网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sdo" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO通信概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDO通信概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本通信流程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO通信实现细节
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDO通信实现细节">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      通信架构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO服务端初始化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO请求处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDO请求处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO状态说明
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAN层
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CAN层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据流向
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="canopen-sdo">CANopen SDO通信详解</h1>
+<h2 id="sdo">SDO通信概述</h2>
+<p>SDO(Service Data Object)是CANopen中用于配置和参数访问的通信机制。它采用客户端-服务端模式,通过对象字典(OD)进行数据交换。</p>
+<h3 id="_1">基本通信流程</h3>
+<p><pre class="mermaid"><code>flowchart LR
+    subgraph SDO通信
+        Client[SDO客户端] --&gt;|1.请求读写OD COB-ID: 0x600+NodeID| Server[SDO服务端]
+        Server --&gt;|2.响应数据 COB-ID: 0x580+NodeID| Client
+        Server &lt;--&gt;|3.访问| OD[对象字典Object Dictionary]
+    end</code></pre>
+在<code>tutorial</code>中执行过<code>cocomm "read 4 0x1234 ...."</code>的命令。
+实际上他执行的就是上述过程。</p>
+<p>读取时由SDO 客户端发起请求。
+<pre class="mermaid"><code>sequenceDiagram
+    participant App as 应用程序
+    participant Client as SDO Client
+    participant Server as SDO Server
+    participant OD as 对象字典
+
+    App-&gt;&gt;Client: 1. CO_SDOclient_setup(nodeId)
+    Note over App,Client: 设置要访问的节点ID
+
+    App-&gt;&gt;Client: 2. CO_SDOclientUploadInitiate(index, subIndex)
+    Note over App,Client: 指定要读取的对象字典条目
+
+    App-&gt;&gt;Server: 3. CO_SDOclientUpload发送上传请求
+    Note over App,Server: CAN报文：读取指定index和subIndex
+
+    Server-&gt;&gt;OD: 4. OD_find() &amp; OD_getSub()
+    Note over Server,OD: 在服务器端查找并读取对象字典
+
+    Server--&gt;&gt;Client: 5. 返回数据
+    Note over Server,Client: 通过CAN报文返回数据
+
+    Client-&gt;&gt;App: 6. CO_SDOclientUploadBufRead()
+    Note over Client,App: 应用程序读取接收到的数据                     </code></pre></p>
+<h2 id="sdo_1">SDO通信实现细节</h2>
+<h3 id="_2">通信架构</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph CAN总线
+        direction LR
+        B1[发送缓冲区] --- B2[接收缓冲区]
+    end
+
+    subgraph SDO服务端
+        direction TB
+        S1[CO_SDOserver_init] --&gt;|1.初始化| S2[服务端对象]
+        S2 --&gt;|3.处理请求| S3[CO_SDOserver_process]
+
+        subgraph 中断服务程序
+            ISR1[CAN_ISR] --&gt;|调用回调| S4[CO_SDO_receive]
+        end
+
+        S4 --&gt;|中断接收| S3
+        MainLoop1((主循环)) -.-&gt;|周期调用| S3
+    end
+
+    subgraph SDO客户端
+        direction TB
+        C1[CO_SDOclient_init] --&gt;|1.初始化| C2[客户端对象]
+        C2 --&gt;|2.发起请求| C3[CO_SDOclient_upload/download]
+
+        subgraph 中断服务程序2
+            ISR2[CAN_ISR] --&gt;|调用回调| C4[CO_SDOclient_process]
+        end
+
+        C4 --&gt;|4.处理响应| C3
+        MainLoop2((主循环)) -.-&gt;|周期调用| C4
+    end
+
+    %% 请求流
+    C3 -.-&gt; B1
+    B1 -.-&gt; ISR1
+
+    %% 响应流
+    S3 -.-&gt; B2
+    B2 -.-&gt; ISR2
+
+    linkStyle 8,9 stroke:red
+    linkStyle 10,11 stroke:blue
+
+    classDef loop fill:#f9f,stroke:#333,stroke-width:2px
+    class MainLoop1,MainLoop2 loop
+    classDef isr fill:#faa,stroke:#333,stroke-width:2px
+    class ISR1,ISR2 isr</code></pre>
+<h3 id="sdo_2">SDO服务端初始化</h3>
+<p>SDO服务端通过<code>CO_SDOserver_init</code>函数完成初始化,主要包括基本参数配置和CAN通信通道的建立。</p>
+<pre class="mermaid"><code>      flowchart TB
+    subgraph CO_SDOserver_init
+        direction TB
+        Init[CO_SDOserver_init] --&gt;|1.初始化基本参数| Basic[设置超时等基本参数]
+        Init --&gt;|2.调用| InitCAN[CO_SDOserver_init_canRxTx]
+    end
+
+    subgraph CO_SDOserver_init_canRxTx
+        direction TB
+        InitCAN --&gt;|1.验证COB-ID| ValidCheck{验证有效位}
+        ValidCheck --&gt;|有效| Config1[配置CAN接收]
+        ValidCheck --&gt;|无效| Invalid[设置无效标志]
+        Config1 --&gt;|CO_CANrxBufferInit| RxInit[初始化接收缓冲区]
+        RxInit --&gt;|注册回调| CB[CO_SDO_receive]
+        Config1 --&gt; Config2[配置CAN发送]
+        Config2 --&gt;|CO_CANtxBufferInit| TxInit[初始化发送缓冲区]
+    end
+
+    %% COB-ID说明
+    COB1[Client-&gt;Server COB-ID&lt;br&gt;默认: 0x600+NodeID]
+    COB2[Server-&gt;Client COB-ID&lt;br&gt;默认: 0x580+NodeID]
+    COB1 -.-&gt;|输入| ValidCheck
+    COB2 -.-&gt;|输入| ValidCheck</code></pre>
+<h3 id="sdo_3">SDO请求处理</h3>
+<p><code>CO_SDOserver_process</code>其实就是一个分发器</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; IDLE
+
+    state IDLE {
+        description: "等待新请求状态"
+        [*] --&gt; Listening
+        note right of Listening
+            isOKstate = false
+            - 可以接收新请求
+            - 监听CAN总线
+        end note
+    }
+
+    state "活跃状态 (isOKstate = true)" as ACTIVE {
+        state "传输初始化" as INIT {
+            DOWNLOAD_INITIATE_REQ
+            UPLOAD_INITIATE_REQ
+        }
+
+        state "数据传输" as TRANSFER {
+            state "分段传输" as SEGMENT
+            state "块传输" as BLOCK
+        }
+    }
+
+    IDLE --&gt; ACTIVE: 收到请求
+    ACTIVE --&gt; IDLE: 传输完成
+    ACTIVE --&gt; ABORT: 错误
+    ABORT --&gt; IDLE: 错误处理完成</code></pre>
+<h4 id="sdo_4">SDO状态说明</h4>
+<p>IDLE状态(Inactive, Disconnected, Listening and Enabled)包含以下含义:</p>
+<ul>
+<li><strong>Inactive</strong>: 不活跃状态,等待新请求</li>
+<li><strong>Disconnected</strong>: 未建立连接</li>
+<li><strong>Listening</strong>: 持续监听总线</li>
+<li><strong>Enabled</strong>: 服务已启用并准备就绪</li>
+</ul>
+<h2 id="can">CAN层</h2>
+<p>那<code>CO_CANsend</code>和<code>CO_CANread</code>在什么地方？他们俩是CAN层收发的接口
+<pre class="mermaid"><code>flowchart TD
+    subgraph 应用层协议
+        SDO[SDO通信] --&gt; |配置数据| CAN
+        PDO[PDO通信] --&gt; |实时数据| CAN
+    end
+
+    subgraph 底层通信
+        CAN[CAN驱动层] --&gt; |硬件接口| H[CAN硬件]
+    end</code></pre></p>
+<h3 id="_3">数据流向</h3>
+<pre class="mermaid"><code>flowchart TD
+    subgraph SDO层
+        A[SDO缓冲区] --&gt;|数据处理| B[对象字典访问/数据组装]
+    end
+
+    subgraph CAN层
+        C1[发送缓冲区] --&gt;|硬件发送| D1[CAN总线]
+        D2[CAN总线] --&gt;|硬件接收| C2[接收缓冲区]
+    end
+
+    B --&gt;|处理后的数据| C1
+    C2 --&gt;|待处理数据| A</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
