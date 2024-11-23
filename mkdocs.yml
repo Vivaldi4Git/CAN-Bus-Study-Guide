@@ -18,6 +18,10 @@ theme:
     - navigation.top
     - search.highlight
     - search.share
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
   palette:
     - scheme: default
       primary: indigo
@@ -57,21 +61,44 @@ nav:
         - CO_CANread: CANopenNode/source_code/CO_CANread.md
         - CO_CANsend: CANopenNode/source_code/CO_CANsend.md
         - CO_CANmodule_init: CANopenNode/source_code/CO_CANmodule_init.md
-
+        - CO_CANrx_t: CANopenNode/source_code/CO_CANrx_t.md
+        - CO_CANtx_t: CANopenNode/source_code/CO_CANtx_t.md
+        - NMT: CANopenNode/source_code/NMT.md
+        - SDO: CANopenNode/source_code/SDO.md
+        - OD: CANopenNode/source_code/OD.md
 # 扩展
 markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - tables
   - footnotes
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 # 插件
 plugins:
   - search
   - roamlinks
+
+# 额外的 JavaScript
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

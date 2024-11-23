@@ -1,15 +1,37 @@
 # dif with CO_CANsend
+
+与`CO_CANsend`不同， `CO_CANread`是一个被动操作， 由`epoll`监听到CAN口的事件， 进行处理后交由`CO_CANread`处理。
 ```mermaid
-graph TD
-    A[应用层] --> B1[CO_CANsend]
-    A --> B2[CO_CANrxFromEpoll]
-    B1 --> C1[直接发送]
-    B2 --> C2[epoll监听] --> C3[CO_CANread] --> C4[消息处理]
+graph TB
+    subgraph 应用层
+        A[应用程序]
+    end
+    
+    subgraph 中间层
+        B1[CO_CANsend]
+        C1[epoll监听]
+        B2[CO_CANrxFromEpoll]
+        C2[CO_CANread]
+    end
+    
+    subgraph 底层
+        CAN[CAN总线]
+    end
+    
+    A --> B1
+    B1 --> CAN
+    
+    CAN --> C1
+    C1 --> B2
+    B2 --> C2
+    C2 --> A
+    
+    style CAN fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 # recv & recvmsg
 
-接收函数对比
+`CO_CANread`使用`recvmsg`接收而非`recv`
 
 ```c
 // 1. recv - 最基础的接收函数

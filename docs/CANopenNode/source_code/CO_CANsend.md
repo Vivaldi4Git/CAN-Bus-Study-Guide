@@ -1,3 +1,13 @@
+CO_CANsend 是CANopenNode中负责发送CAN消息的函数。
+
+```c
+CO_ReturnError_t CO_CANsend(
+    CO_CANmodule_t* CANmodule, // CAN模块实例
+    CO_CANtx_t* buffer // 发送消息
+)
+```
+`CO_CANsend`由应用层直接调用，将消息发送出去。并提供自动重发的机制。
+
 ```mermaid
 graph TD
     A[应用层调用CO_CANsend] --> B{首次发送}
