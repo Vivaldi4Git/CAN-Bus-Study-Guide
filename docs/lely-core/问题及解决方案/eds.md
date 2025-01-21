@@ -4,9 +4,11 @@ eds/dcf
 MandatoryObjects（强制对象）：
 必须存在于设备中的对象
 通常包含：
+```
 0x1000：设备类型
 0x1001：错误寄存器
 0x1018：身份对象
+```
 OptionalObjects（可选对象）：
 CANopen 标准定义的可选对象
 包括：
