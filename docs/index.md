@@ -15,4 +15,4 @@
 
 ## 在线文档
 
-👉 [查看完整文档](https://your-mkdocs-site-url.com)
+👉 [查看完整文档](https://Vivaldi4Git.github.io/CAN-Bus-Study-Guide)

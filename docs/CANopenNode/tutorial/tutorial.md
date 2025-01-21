@@ -124,6 +124,9 @@ cocomm "4 start"
 cocomm "0 reset node"
 ```
 
+## .persist 处理
+
+
 # Next steps
 - [LSS](LSS.md)
 - [SDO](SDO.md)

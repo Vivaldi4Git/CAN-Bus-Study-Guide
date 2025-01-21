@@ -1444,7 +1444,12 @@
 
   <h1>CanOpenNode实践</h1>
 
-<p>脚本
+<p>这个脚本(<code>canctl.sh</code>)提供了一个简单的命令行工具来管理CAN总线接口。它可以帮助用户快速完成以下操作:</p>
+<ul>
+<li>启动/停止/重启 CAN接口</li>
+<li>设置CAN总线波特率</li>
+<li>监控CAN总线消息</li>
+<li>查看CAN接口状态和错误统计
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/bin/bash</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># 文件名: canctl.sh</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -1575,7 +1580,8 @@
 </span></code></pre></div>
 启动监控
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>root@hzncc:~# canctl monitor
-</span></code></pre></div></p>
+</span></code></pre></div></li>
+</ul>
 <p>在EYOUCANABLETOOL上打开设备,显示内容
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>  can0  77F   [1]  00
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  can0  000   [2]  81 00
